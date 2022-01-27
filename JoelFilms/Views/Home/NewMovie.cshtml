@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Add New Movie";
+}
+
+@model JoelFilms.Models.NewMovieModel
+
+<div class="container text-center">
+    <h1 class="display-4">New Movie</h1>
+    <p>Add your new movie below!</p>
+</div>
+
+<form method="post">
+    <div class="row mb-4">
+
+        <!-- Category -->
+        <div class="col">
+            <label asp-for="Category">Category</label>
+            <input type="text" class="form-control" asp-for="Category" placeholder="e.g. Action/Adventure">
+        </div>
+
+        <!-- Title -->
+        <div class="col-md-8">
+            <label asp-for="Title">Title</label>
+            <input type="text" class="form-control" asp-for="Title" placeholder="e.g. The Avengers">
+        </div>
+    </div>
+
+    <div class="row mb-4">
+
+        <!-- Rating -->
+        <div class="col-md-2">
+            <label asp-for="Rating" class="form-label">Rating</label>
+            <select asp-for="Rating" class="form-select">
+                <option value="G">G</option>
+                <option value="PG">PG</option>
+                <option value="PG-13">PG-13</option>
+                <option value="R">R</option>
+            </select>
+        </div>
+
+        <!-- Year -->
+        <div class="col">
+            <label asp-for="Year">Year</label>
+            <input type="number" class="form-control" asp-for="Year" placeholder="e.g. 2012">
+        </div>
+
+        <!-- Director -->
+        <div class="col-md-6">
+            <label asp-for="Director">Director</label>
+            <input type="text" class="form-control" asp-for="Director" placeholder="e.g. Joss Whedon">
+        </div>
+    </div>
+
+    <div class="row mb-4">
+
+        <!-- Edited -->
+        <div class="col-md-2">
+            <label asp-for="Edited" class="form-label">Edited</label>
+            <select asp-for="Edited" class="form-select">
+                <option value="false" selected>No</option>
+                <option value="true">Yes</option>
+            </select>
+        </div>
+
+        <!-- Lent to -->
+        <div class="col">
+            <label asp-for="Lent">Lent to: </label>
+            <input type="text" class="form-control" asp-for="Lent" placeholder="e.g. Jane Doe">
+        </div>
+
+        <!-- Notes -->
+        <div class="col-md-6">
+            <label asp-for="Notes">Notes</label>
+            <input type="text" class="form-control" asp-for="Notes" placeholder="e.g. scratched at 34 min">
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Add Movie</button>
+</form>
