@@ -4,22 +4,40 @@
 
 @model JoelFilms.Models.NewMovieModel
 
-<div class="container text-center">
-    <h1 class="display-4">New Movie</h1>
-    <p>Add your new movie below!</p>
-</div>
+@if (Model != null)
+{
+
+    <div class="container text-center">
+        <h1 class="display-4">Edit Movie</h1>
+        <p>Edit your movie below!</p>
+    </div>
+}
+else
+{
+    <div class="container text-center">
+        <h1 class="display-4">New Movie</h1>
+        <p>Add your new movie below!</p>
+    </div>
+}
 
 <form method="post">
+    <div asp-validation-summary="All"></div>
     <div class="row mb-4">
 
         <!-- Category -->
-        <div class="col">
-            <label asp-for="Category">Category</label>
-            <input type="text" class="form-control" asp-for="Category" placeholder="e.g. Action/Adventure">
+        <div class="col-md-3">
+            <label asp-for="CategoryID" class="form-label">Category</label>
+            <select asp-for="CategoryID" class="form-select">
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <option value=0>Select</option>
+                    <option value=@category.CategoryID>@category.CategoryName</option>
+                }
+            </select>
         </div>
 
         <!-- Title -->
-        <div class="col-md-8">
+        <div class="col">
             <label asp-for="Title">Title</label>
             <input type="text" class="form-control" asp-for="Title" placeholder="e.g. The Avengers">
         </div>
@@ -28,7 +46,7 @@
     <div class="row mb-4">
 
         <!-- Rating -->
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label asp-for="Rating" class="form-label">Rating</label>
             <select asp-for="Rating" class="form-select">
                 <option value="G">G</option>
@@ -54,7 +72,7 @@
     <div class="row mb-4">
 
         <!-- Edited -->
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label asp-for="Edited" class="form-label">Edited</label>
             <select asp-for="Edited" class="form-select">
                 <option value="false" selected>No</option>
@@ -75,5 +93,12 @@
         </div>
     </div>
 
-    <button class="btn btn-primary" type="submit">Add Movie</button>
+    @if (Model != null)
+    {
+        <button class="btn btn-primary" type="submit">Update Movie</button>
+    }
+    else
+    {
+        <button class="btn btn-primary" type="submit">Add Movie</button>
+    }
 </form>
